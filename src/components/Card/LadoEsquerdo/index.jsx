@@ -1,11 +1,12 @@
-import { useState } from "react";
+import React from "react";
 
 export default function LadoEsquerdo({
     setNome,
-    setSenha,
-    setRepetirSenha,
     setEmail,
-    setRepetirEmail
+    setRepeteEmail,
+    setSenha,
+    setRepeteSenha,
+    handleSubmit
 }) {
     return (
         <div>
@@ -16,45 +17,60 @@ export default function LadoEsquerdo({
             </div>
             <div className="meio">
                 <div className="inputs">
-                    <form action="">
+                    <form onSubmit={handleSubmit}>
                         <div className="input">
-                            <label htmlFor="">Nome</label>
-                            <input type="text"
+                            <label htmlFor="nome">Nome</label>
+                            <input
+                                type="text"
+                                id="nome"
                                 onChange={(e) => setNome(e.target.value)}
+                                required
                             />
                         </div>
                         <div className="input">
-                            <label htmlFor="">E-mail</label>
-                            <input type="email"
+                            <label htmlFor="email">E-mail</label>
+                            <input
+                                type="email"
+                                id="email"
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                         </div>
                         <div className="input">
-                            <label htmlFor="">Repete E-mail</label>
-                            <input type="email"
-                                onChange={(e) => setRepetirEmail(e.target.value)}
+                            <label htmlFor="repetirEmail">Repete E-mail</label>
+                            <input
+                                type="email"
+                                id="repetirEmail"
+                                onChange={(e) => setRepeteEmail(e.target.value)}
+                                required
                             />
                         </div>
                         <div className="input">
-                            <label htmlFor="">Senha</label>
-                            <input type="password"
+                            <label htmlFor="senha">Senha</label>
+                            <input
+                                type="password"
+                                id="senha"
                                 onChange={(e) => setSenha(e.target.value)}
+                                required
                             />
                         </div>
                         <div className="input">
-                            <label htmlFor="">Repete Senha</label>
-                            <input type="password"
-                                onChange={(e) => setRepetirSenha(e.target.value)}
+                            <label htmlFor="repetirSenha">Repete Senha</label>
+                            <input
+                                type="password"
+                                id="repetirSenha"
+                                onChange={(e) => setRepeteSenha(e.target.value)}
+                                required
                             />
+                        </div>
+                        <div className="fim">
+                            <div className="botao">
+                                <button type="submit">Cadastrar</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div className="fim">
-                <div className="botao">
-                    <button type="submit">Cadastrar</button>
-                </div>
-            </div>
         </div>
-    )
+    );
 }
