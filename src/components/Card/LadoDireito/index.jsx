@@ -1,23 +1,33 @@
-import { useState } from "react";
+import React from "react";
 
-export default function LadoDireito() {
-
+export default function LadoDireito({
+    cadastroNome,
+    cadastroEmail,
+    cadastroSenha
+}) {
     return (
         <div>
             <div className="topo">
-                <h2>Ultimos Casastros</h2>
+                <h2>Últimos Cadastros</h2>
             </div>
             <div className="meio">
-                <strong>
-                    <p>Nome: </p>
-                </strong>
-                <strong>
-                    <p>Email: </p>
-                </strong>
-                <strong>
-                    <p>Senha: </p>
-                </strong>
+                {cadastroNome && (
+                    <div>
+                        <strong>
+                            <p>Nome: {cadastroNome}</p>
+                        </strong>
+                        <strong>
+                            <p>Email: {cadastroEmail}</p>
+                        </strong>
+                        <strong>
+                            <p>Senha: {cadastroSenha}</p>
+                        </strong>
+                    </div>
+                )}
+                {!cadastroNome && (
+                    <p>Nenhum cadastro realizado ainda.</p>
+                )}
             </div>
         </div>
-    )
+    );
 }
