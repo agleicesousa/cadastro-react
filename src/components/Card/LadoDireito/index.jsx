@@ -1,23 +1,26 @@
-import { useState } from "react";
+import React from "react";
 
-export default function LadoDireito() {
-
+export default function LadoDireito({ ultimosCadastros }) {
     return (
         <div>
             <div className="topo">
-                <h2>Ultimos Casastros</h2>
+                <h2>Últimos Cadastros</h2>
             </div>
             <div className="meio">
-                <strong>
-                    <p>Nome: </p>
-                </strong>
-                <strong>
-                    <p>Email: </p>
-                </strong>
-                <strong>
-                    <p>Senha: </p>
-                </strong>
+                {ultimosCadastros.map((cadastro, index) => (
+                    <div key={index}>
+                        <strong>
+                            <p>Nome: {cadastro.nome}</p>
+                        </strong>
+                        <strong>
+                            <p>Email: {cadastro.email}</p>
+                        </strong>
+                        <strong>
+                            <p>Senha: {cadastro.senha}</p>
+                        </strong>
+                    </div>
+                ))}
             </div>
         </div>
-    )
+    );
 }
