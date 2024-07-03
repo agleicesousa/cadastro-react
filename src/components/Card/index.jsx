@@ -1,68 +1,72 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import LadoEsquerdo from "./LadoEsquerdo";
+import LadoDireito from "./LadoDireito";
+import "./styles.css";
 
-import LadoEsquerdo from './LadoEsquerdo'
-import LadoDireito from './LadoDireito'
-import './styles.css'
+export default function App() {
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [repeteEmail, setRepeteEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [repeteSenha, setRepeteSenha] = useState("");
 
-export default function Card() {
+    const [cadastroNome, setCadastroNome] = useState("");
+    const [cadastroEmail, setCadastroEmail] = useState("");
+    const [cadastroSenha, setCadastroSenha] = useState("");
 
-    const [nome, setNome] = useState('')
-    const [email, setEmail] = useState('')
-    const [repeteEmail, setRepeteEmail] = useState('')
-    const [senha, setSenha] = useState('')
-    const [repeteSenha, setRepeteSenha] = useState('')
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const [cadastroNome, setCadastroNome] = useState('')
-    const [cadastroEmail, setCadastroEmail] = useState('')
-    const [cadastroSenha, setCadastroSenha] = useState('')
-
-    function cadastro() {
-        if(!nome || !email || !repeteEmail || !senha || !repeteSenha) {
-            alert('Preencha todos os campos')
-            return
+        // Validar se todos os campos foram preenchidos
+        if (!nome || !email || !repeteEmail || !senha || !repeteSenha) {
+            alert("Preencha todos os campos.");
+            return;
         }
 
-        if(senha!== repeteSenha) {
-            alert('As senhas não são iguais')
-            return
+        // Validar se os emails coincidem
+        if (email !== repeteEmail) {
+            alert("Os emails não coincidem.");
+            return;
         }
 
-        if(email!== repeteEmail) {
-            alert('Os emails não são iguais')
-            return
+        // Validar se as senhas coincidem
+        if (senha !== repeteSenha) {
+            alert("As senhas não coincidem.");
+            return;
         }
 
-        setCadastroNome(nome)
-        setCadastroEmail(email)
-        setCadastroSenha(senha)
+        // Se passar pelas validações, atualiza o estado de cadastro
+        setCadastroNome(nome);
+        setCadastroEmail(email);
+        setCadastroSenha(senha);
 
-        setNome('')
-        setEmail('')
-        setRepeteEmail('')
-        setSenha('')
-        setRepeteSenha('')
-    }
+        // Limpar os campos do formulário após o cadastro
+        setNome("");
+        setEmail("");
+        setRepeteEmail("");
+        setSenha("");
+        setRepeteSenha("");
+    };
 
     return (
-        <div>
-            <div className="card">
-                <div className="ladoEsquerdo">
-                    <LadoEsquerdo
-                        setNome={setNome}
-                        setEmail={setEmail}
-                        setRepeteEmail={setRepeteEmail}
-                        setSenha={setSenha}
-                        setRepeteSenha={setRepeteSenha}
-                    />
-                </div>
-                <div className="ladoDireito">
-                    <LadoDireito
-                        setCadastroNome={setCadastroNome}
-                        setCadastroEmail={setCadastroEmail}
-                        setCadastroSenha={setCadastroSenha}
-                    />
-                </div>
+        <div className="app">
+            <div className="lado-esquerdo">
+                <LadoEsquerdo
+                    setNome={setNome}
+                    setEmail={setEmail}
+                    setRepeteEmail={setRepeteEmail}
+                    setSenha={setSenha}
+                    setRepeteSenha={setRepeteSenha}
+                    handleSubmit={handleSubmit}
+                />
+            </div>
+            <div className="lado-direito">
+                <LadoDireito
+                    cadastroNome={cadastroNome}
+                    cadastroEmail={cadastroEmail}
+                    cadastroSenha={cadastroSenha}
+                />
             </div>
         </div>
-    )
+    );
 }
